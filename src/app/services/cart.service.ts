@@ -87,6 +87,95 @@ export class CartService {
     });
   }
 
+  //metodo para adicionar um produto ao carrinho
+  addingProductInCart(id: number, quantidade?: number) {
+    this.productService.getProduct(id).subscribe(produto => {
+
+      //caso o carrinho esteja vazio sem nenhum produto
+      if (this.cartDataServer.data[0].produto === undefined) {
+        this.cartDataServer.data[0].produto = produto;
+        this.cartDataServer.data[0].quantidadeEmCarrinho = quantidade !== undefined
+          ? quantidade : 1;
+
+        this.calcularTotalProduto()
+
+        this.cartDataClient.produtoData[0].noCarrinho =
+          this.cartDataServer.data[0].quantidadeEmCarrinho;
+        this.cartDataClient.produtoData[0].id = produto.id;
+        this.cartDataClient.total = this.cartDataServer.total;
+
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient))//salvando produto no storage
+        this.dataCarrinho.next({ ...this.cartDataServer })
+
+        //TODO display de notificação
+        this.toast.success(`${produto.title} adicionado ao carrinho`, 'Produto Adicionado', {
+          timeOut: 1500,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-right'
+        })
+
+      } else {
+        //caso o produto já exista no carrinho, então adicionamos mais
+
+        let index = this.cartDataServer.data.findIndex(p => p.produto.id === produto.id) //retorna -1 ou um numero positivo
+
+        if (index !== -1) {
+          if (quantidade !== undefined && quantidade <= produto.quantity) {
+            this.cartDataServer.data[index].quantidadeEmCarrinho =
+              this.cartDataServer.data[index].quantidadeEmCarrinho < produto.quantity
+                ? quantidade : produto.quantity
+          } else {
+            this.cartDataServer.data[index].quantidadeEmCarrinho < produto.quantity
+              ? this.cartDataServer.data[index].quantidadeEmCarrinho++ : produto.quantity
+          }
+
+          this.cartDataClient.produtoData[index].noCarrinho =
+            this.cartDataServer.data[index].quantidadeEmCarrinho
+
+          this.calcularTotalProduto()
+          this.cartDataClient.total = this.cartDataServer.total
+          localStorage.setItem('cart', JSON.stringify(this.cartDataClient))
+          this.toast.info(`${produto.title} quantidade atualizada no carrinho`, 'Produto Atualizado', {
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right'
+          })
+
+        } else {
+
+          // Caso o carrinho não esteja vazio mas não tenha aquele produto
+
+          this.cartDataServer.data.push({
+            quantidadeEmCarrinho: 1,
+            produto: produto
+          })
+
+          this.cartDataClient.produtoData.push({
+            noCarrinho: 1,
+            id: produto.id
+          })
+
+          //localStorage.setItem('cart', JSON.stringify(this.cartDataClient))
+          this.toast.success(`${produto.title} adicionado ao carrinho`, 'Produto Adicionado', {
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right'
+          })
+
+
+          this.calcularTotalProduto()
+          this.cartDataClient.total = this.cartDataServer.total
+          localStorage.setItem('cart', JSON.stringify(this.cartDataClient))
+          this.dataCarrinho.next({ ...this.cartDataServer })
+
+        }
+      }
+    })
+  }
+
   private calcularTotalProduto() {
     let total = 0;
 
