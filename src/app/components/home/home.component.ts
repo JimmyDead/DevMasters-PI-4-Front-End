@@ -1,3 +1,7 @@
+import { Router } from '@angular/router';
+import { ProductService } from './../../services/product.service';
+import { CartService } from './../../services/cart.service';
+import { Produtos } from './../../model/produtos-data.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService, private router: Router,
+    private cartService: CartService) { }
+
+  produtos: Produtos[]
 
   ngOnInit(): void {
+    //carregando os valores do produto na inicialização da classe ultilizando metodo para pegar todos os produtos cadastrados
+    this.productService.getAllProducts().subscribe(produtos => {
+      this.produtos = produtos
+    })
+  }
+
+  //metodo que leva para pagina de um produto especifico contendo suas informações
+  selecionarProduto(id: number) {
+    this.router.navigate(['/product', id]).then()
+  }
+
+  //metodo para adicionar um produto no carrinho
+  addingProductInCart(id: number) {
+    this.cartService.addingProductInCart(id)
   }
 
 }

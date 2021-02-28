@@ -14,11 +14,11 @@ export class ProductService {
   private SERVER_URL = environment.serverURL
 
   getAllProducts(): Observable<Produtos[]> {
-    return this.http.get<Produtos[]>(this.SERVER_URL);
+    return this.http.get<Produtos[]>(`${this.SERVER_URL}produtos`); 
   }
 
   getProduct(id: number): Observable<Produtos> {
-    const url = `${this.SERVER_URL}/${id}`;
+    const url = `${this.SERVER_URL}produtos/${id}`;
     return this.http.get<Produtos>(url)
   }
 }
