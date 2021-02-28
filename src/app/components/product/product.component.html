@@ -1,1 +1,136 @@
-<p>product works!</p>
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">All Categories</a></li>
+          <li><a href="#">Accessories</a></li>
+          <!--<li><a href="#">{{produto.category}}</a></li>-->
+          <li class="active">{{produto.title}}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row d-flex">
+      <!-- Product main img -->
+      <div class="col-md-5 col-md-push-2">
+        <div id="product-main-img">
+          <ng-template [ngIf]="imagesProdutos.length === 0">
+            <div class="product-preview">
+              <img [src]="produto.image" alt="">
+            </div>
+          </ng-template>
+          <ng-template [ngIf]="imagesProdutos.length > 0">
+            <div class="product-preview" *ngFor="let imgProd of imagesProdutos">
+              <img [src]="imgProd" alt="">
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <!-- /Product main img -->
+
+      <!-- Product thumb imgs -->
+      <div class="col-md-2  col-md-pull-5">
+        <ng-template [ngIf]="imagesProdutos.length > 0">
+          <div id="product-imgs">
+            <div *ngFor="let imgProd of imagesProdutos" class="product-preview">
+              <img [src]="imgProd" alt="">
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template [ngIf]="imagesProdutos.length === 0">
+          <div id="product-imgs">
+            <div class="product-preview">
+              <img [src]="produto.image" alt="">
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <!-- /Product thumb imgs -->
+
+      <!-- Product details -->
+      <div class="col-md-5">
+        <div class="product-details">
+          <h2 class="product-name">{{produto.title}}</h2>
+          <div>
+            <div class="product-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <a class="review-link" href="#">10 Review(s) | Add your review</a>
+          </div>
+          <div>
+            <h3 class="product-price">{{produto.price | currency: 'BRL'}}</h3>
+            <span class="product-available">{{produto.quantity < 1 ? 'Sem estoque' : 'Em estoque'}}</span>
+          </div>
+          <p>
+            {{produto.description}}
+          </p>
+
+          <div class="add-to-cart">
+            <div class="qty-label">
+              Qty
+              <div class="input-number">
+                <input type="number" [max]="produto?.quantity >= 1 ? produto?.quantity : 0" readonly #quantity
+                  value="{{produto?.quantity >= 1 ? 1 : 0}}">
+                <button (click)="decrementar()" [class.disabled]="produto.quantity < 1"
+                  [disabled]="produto.quantity < 1">
+                  <i class="fa fa-minus"></i></button>
+                <button (click)="incrementar()" [class.disabled]="produto.quantity < 1"
+                  [disabled]="produto.quantity < 1">
+                  <i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+            <button class="add-to-cart-btn" (click)="adicionarCarrinho(produto?.id)"
+              [class.disabled]="produto.quantity < 1" [disabled]="produto.quantity < 1">
+              <i class="fa fa-shopping-cart"></i>
+              Adicionar ao carrinho</button>
+          </div>
+
+          <ul class="product-btns">
+            <li><a href="#"><i class="fa fa-heart-o"></i>Adicionar a lista de desejos</a></li>
+            <li><a href="#"><i class="fa fa-exchange"></i>Adicione para comparar</a></li>
+          </ul>
+
+          <ul class="product-links">
+            <li>Categoria:</li>
+            <li><a href="#">Headphones</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+
+          <ul class="product-links">
+            <li>Share:</li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- /Product details -->
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
