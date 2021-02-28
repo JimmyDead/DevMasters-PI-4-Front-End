@@ -1,1 +1,9 @@
-<p>delete-product works!</p>
+<div mat-dialog-content class="informationProduct">
+  <h3 mat-dialog-title>Deseja remover este produto do carrinho?</h3>
+  <h4 mat-dialog-title>Nome do produto</h4>
+  <h5 mat-dialog-title name="title">{{produto.title}}</h5>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="deleteProduto()" color="warn">Excluir</button>
+  <button mat-button (click)="cancel()" color="primary">Cancelar</button>
+</div>
