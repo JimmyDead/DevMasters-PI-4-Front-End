@@ -66,29 +66,30 @@
               <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Seu Carrinho</span>
-                <div class="qty"></div>
+                <div class="qty">{{carrinhoData.data[0].quantidadeEmCarrinho !== 0 
+                  ? carrinhoData.data.length : 0}}</div>
               </a>
               <div class="cart-dropdown">
-                <div class="cart-list" >
-                  <div class="product-widget" >
+                <div class="cart-list" *ngIf="carrinhoData.data[0].quantidadeEmCarrinho !== 0 ">
+                  <div class="product-widget" *ngFor="let produto of carrinhoData.data; let i=index">
                     <div class="product-img">
-                      <img src="=" width="20px">
+                      <img [src]="produto.produto?.image" alt="{{produto.produto.title}}" width="20px">
                     </div>
                     <div class="product-body">
-                      <h3 class="product-name"><a href="#"></a></h3>
-                      <h4 class="product-price"><span class="qty"> x
-                        </span></h4>
+                      <h3 class="product-name"><a href="#">{{produto.produto.title}}</a></h3>
+                      <h4 class="product-price"><span class="qty">{{produto.quantidadeEmCarrinho}} x
+                        </span>{{produto.produto?.price | currency: 'BRL'}}</h4>
                     </div>
-                    <button class="delete"><i
+                    <button class="delete" (click)="openDialogDeleteProduct(i, produto.produto)"><i
                         class="fa fa-close"></i></button>
 
                   </div>
 
                 </div>
                 <div class="cart-summary">
-                  <small> Item(s)
+                  <small>{{carrinhoData.data[0].quantidadeEmCarrinho !== 0 ? carrinhoData.data.length : 0}} Item(s)
                     selecionados</small>
-                  <h5>TOTAL: </h5>
+                  <h5>TOTAL: {{ carrinhoTotal | currency: 'BRL' }}</h5>
                 </div>
                 <div class="cart-btns">
                   <a routerLink="/cart">Ver Carrinho</a>
