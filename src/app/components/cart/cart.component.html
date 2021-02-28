@@ -1,1 +1,79 @@
-<p>cart works!</p>
+<div class="container my-5">
+
+  <!--Carrinho vazio-->
+  <div class="text-center my-5" *ngIf="dataCarrinho.data[0].quantidadeEmCarrinho === 0;">
+    <h3>Seu carrinho está vazio</h3>
+    <button class="btn btn-primary btn-lg mt-3" routerLink="/">Voltar as compras</button>
+  </div>
+
+  <!--Carrinho diferente de 0-->
+  <ng-container *ngIf="dataCarrinho.data[0].quantidadeEmCarrinho !== 0;">
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table text-center table-hover">
+          <thead class="table-dark">
+            <tr class="text-center">
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let carrinho of dataCarrinho.data; let i = index">
+              <td class="d-flex align-items-center justify-content-around">
+                <img [src]="carrinho.produto.image" alt="{{carrinho.produto.title}}" height="60" class="order-1">
+                <span class="text-danger mr-md-2" style="cursor:pointer;"><i class="fa fa-trash"
+                    (click)="cartService.openDialogDeleteProduct(i, carrinho.produto)"></i></span>
+              </td>
+
+              <td>
+                <p>{{carrinho.produto.title}}</p>
+              </td>
+
+              <td>
+                <p>{{carrinho.produto.price | currency: 'BRL'}}</p>
+              </td>
+
+              <td>
+                <form>
+                  <div class="value-button" id="decrease" (click)="escolherQuantidade(i,false)">
+                    <i class="fa fa-minus"></i>
+                  </div>
+                  <input type="number" id="number" [value]="carrinho.quantidadeEmCarrinho" readonly
+                    [max]=carrinho.produto.quantity>
+
+                  <div class="value-button" id="increase" (click)="escolherQuantidade(i,true)">
+                    <i class="fa fa-plus"></i>
+                  </div>
+                </form>
+              </td>
+
+              <td>
+                <p>{{cartService.calcularSubTotal(i) | currency: 'BRL'}}</p>
+              </td>
+            </tr>
+
+            <tr class="border-0">
+              <td style="border: none"></td>
+              <td></td>
+              <td></td>
+              <td>TOTAL</td>
+              <td>{{totalCarrinho | currency: 'BRL'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-12 d-flex mb-5">
+        <div class="d-flex justify-content-around flex-sm-column flex-md-row w-100">
+          <a routerLink="/checkout" class="btn btn-danger btn-sm order-1">Checkout</a>
+          <a routerLink="/" class="btn btn-success btn-sm order-0">Continue comprando</a>
+        </div>
+      </div>
+
+    </div>
+  </ng-container>
+</div>

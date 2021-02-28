@@ -270,4 +270,12 @@ export class CartService {
     this.cartDataServer.total = total;
     this.totalCarrinho.next(this.cartDataServer.total)
   }
+
+  //metodo usado na pagina do arrinho para calcular o subtotal da compra
+  private calcularSubTotal(index): number {
+    let subTotal = 0;
+    const p = this.cartDataServer.data[index]
+    subTotal = p.produto.price * p.quantidadeEmCarrinho
+    return subTotal
+  }
 }
