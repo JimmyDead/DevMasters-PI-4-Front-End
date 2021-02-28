@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localePt);
 
@@ -21,7 +22,8 @@ registerLocaleData(localePt);
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
