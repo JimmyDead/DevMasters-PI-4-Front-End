@@ -1,3 +1,4 @@
+import { DeleteProductComponent } from './../components/delete-product/delete-product.component';
 import { Produtos } from './../model/produtos-data.model';
 import { OrderService } from './order.service';
 import { ProductService } from './product.service';
@@ -174,6 +175,53 @@ export class CartService {
         }
       }
     })
+  }
+
+  //metodo para atualizar a quantidade de um produto
+  updatingCarrinhoItems(index: number, incremento: boolean) {
+
+    let data = this.cartDataServer.data[index];
+    if (incremento) { //aumentando a quantidade de um mesmo produto
+      data.quantidadeEmCarrinho < data.produto.quantity ? data.quantidadeEmCarrinho++ : data.produto.quantity;
+      this.cartDataClient.produtoData[index].noCarrinho = data.quantidadeEmCarrinho;
+      this.calcularTotalProduto();
+      this.cartDataClient.total = this.cartDataServer.total;
+      this.dataCarrinho.next({ ...this.cartDataServer });
+      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+    } else {
+      // diminuindo a quantidade de um mesmo produto e quando o produto estiver em 1 e o 
+      // usuario decrementar mais uma vez vai perguntar se deseja excluir o produto
+      let fim = false
+      if (data.quantidadeEmCarrinho - 1 !== 0) {
+        data.quantidadeEmCarrinho--;
+        fim = false
+      } else {
+        fim = true
+      }
+      this.calcularTotalProduto();
+      if (data.quantidadeEmCarrinho - 1 === 0 && fim) {
+        this.openDialogDeleteProduct(index, data.produto)
+        this.dataCarrinho.next({ ...this.cartDataServer });
+      } else {
+        this.dataCarrinho.next({ ...this.cartDataServer });
+        this.cartDataClient.produtoData[index].noCarrinho = data.quantidadeEmCarrinho;
+        this.calcularTotalProduto();
+        this.cartDataClient.total = this.cartDataServer.total;
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+      }
+
+    }
+
+  }
+
+  //vai abrir uma janela de dialogo perguntando se deseja excluir o produto
+  openDialogDeleteProduct(index, produto) {
+    this.dialog.open(DeleteProductComponent, {
+      data: {
+        produto: produto,
+        index: index
+      }
+    });
   }
 
   private calcularTotalProduto() {
