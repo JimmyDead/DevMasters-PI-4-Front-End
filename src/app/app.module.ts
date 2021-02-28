@@ -10,6 +10,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProductComponent } from './components/product/product.component';
+import { DeleteProductComponent } from './components/delete-product/delete-product.component';
+import { ThankyouComponent } from './components/thankyou/thankyou.component';
 
 registerLocaleData(localePt);
 
@@ -18,7 +23,12 @@ registerLocaleData(localePt);
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    CheckoutComponent,
+    CartComponent,
+    ProductComponent,
+    DeleteProductComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,
