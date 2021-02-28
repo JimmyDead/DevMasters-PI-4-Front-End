@@ -214,6 +214,39 @@ export class CartService {
 
   }
 
+  //metodo para deletar um produto do carrinho, vai ser chamado atraves da caixa de dialogo de deletar produto
+  async deleteProdutoCarrinho(index) {
+    //removendo o index do produto do array 
+    this.cartDataServer.data.splice(index, 1);
+    this.cartDataClient.produtoData.splice(index, 1);
+
+    this.calcularTotalProduto();
+    this.cartDataClient.total = this.cartDataServer.total;
+
+    //atualizando no storage
+    if (this.cartDataClient.total === 0) {
+      this.cartDataClient = { produtoData: [{ noCarrinho: 0, id: 0 }], total: 0 };
+      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+    } else {
+      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+    }
+
+    //caso nao exista mais nenhum produto
+    if (this.cartDataServer.total === 0) {
+      this.cartDataServer = {
+        data: [{
+          produto: undefined,
+          quantidadeEmCarrinho: 0
+        }],
+        total: 0
+      };
+      this.dataCarrinho.next({ ...this.cartDataServer });
+    } else {
+      this.dataCarrinho.next({ ...this.cartDataServer });
+    }
+
+  }
+
   //vai abrir uma janela de dialogo perguntando se deseja excluir o produto
   openDialogDeleteProduct(index, produto) {
     this.dialog.open(DeleteProductComponent, {
