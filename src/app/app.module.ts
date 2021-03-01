@@ -27,6 +27,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 registerLocaleData(localePt);
 
@@ -40,7 +41,8 @@ registerLocaleData(localePt);
     CartComponent,
     ProductComponent,
     DeleteProductComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

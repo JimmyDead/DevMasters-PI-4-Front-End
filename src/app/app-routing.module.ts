@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'thankyou', component: ThankyouComponent
+  },
+  {
+    path: 'login', component: LoginComponent
   }
 ];
 
