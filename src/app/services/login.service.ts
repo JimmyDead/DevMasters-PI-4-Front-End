@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
@@ -7,24 +9,30 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  constructor(private toast: ToastrService, private httpClient: HttpClient) { }
+  constructor(private toast: ToastrService, private httpClient: HttpClient,
+    private router: Router) { }
+
+  private SERVER_URL = environment.serverURL
 
   login(userName: string, password: string) {
-    if (userName === "marcos") {
-      this.toast.success('Login Efetuado com sucesso', 'Login', {
-        timeOut: 1500,
-        progressBar: true,
-        progressAnimation: 'increasing',
-        positionClass: 'toast-top-right'
-      })
-    } else {
-      this.toast.error('Senha ou usuario incorretos', 'Login', {
-        timeOut: 1500,
-        progressBar: true,
-        progressAnimation: 'increasing',
-        positionClass: 'toast-top-right'
-      })
-    }
+    let url = `${this.SERVER_URL}login/username?=${userName}&password=${password}`
+    /*this.httpClient.get(url).subscribe(result => {
+      if (result) {
+        this.toast.success('Login Efetuado com sucesso', 'Login', {
+          timeOut: 1500,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-right'
+        })
 
+      } else {
+        this.toast.error('Senha ou usuario incorretos', 'Login', {
+          timeOut: 1500,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          positionClass: 'toast-top-right'
+        })
+      }
+    })*/
   }
 }
