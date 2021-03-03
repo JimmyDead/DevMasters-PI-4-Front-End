@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { FormsModule } from '@angular/forms';
 
@@ -27,6 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 registerLocaleData(localePt);
 
@@ -40,7 +42,8 @@ registerLocaleData(localePt);
     CartComponent,
     ProductComponent,
     DeleteProductComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ registerLocaleData(localePt);
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatCardModule,
     FormsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
