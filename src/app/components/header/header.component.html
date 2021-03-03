@@ -76,7 +76,7 @@
                       <img [src]="produto.produto?.image" alt="{{produto.produto.title}}" width="20px">
                     </div>
                     <div class="product-body">
-                      <h3 class="product-name"><a (click)="selecionarProduto(produto.produto.id)"
+                      <h3 class="product-name"><a routerLink="" (click)="selecionarProduto(produto.produto.id)"
                          >{{produto.produto.title}}</a></h3>
                       <h4 class="product-price"><span class="qty">{{produto.quantidadeEmCarrinho}} x
                         </span>{{produto.produto?.price | currency: 'BRL'}}</h4>
