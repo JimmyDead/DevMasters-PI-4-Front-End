@@ -1,46 +1,15 @@
 .box {
-  width: 800px;
-  padding: 40px;
-  /*position: absolute;*/
-  /*top: 50%;*/
-  /*left: 50%;*/
-  margin-top: 20%;
-  margin-left: 50%;
-  transform: translate(-50%, -50%);
-  background: #0e0d0dec;
+  margin: auto;
+  width: 60%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   text-align: center;
+  background: #15161D;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 10);
   border-radius: 10px;
 }
 
-.box h1 {
-  color: white;
-  font-weight: 500;
-}
-
-.box input[type="password"],
-.box input[type="text"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #ffffff;
-  padding: 14px 10px;
-  width: 200px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-}
-
-.box input[type="password"]:focus,
-.box input[type="text"]:focus {
-  width: 280px;
-  border-color: #d42e10;
-}
-
-form button {
+.box button {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -53,18 +22,13 @@ form button {
   letter-spacing: 4px;
 }
 
-form button:hover {
+.box button:hover {
   background: #ec2309;
   color: #f1eee6;
   border-radius: 5px;
   box-shadow: 0 0 25px #8b0808,
     0 0 50px #8b0808,
     0 0 100px #8b0808;
-}
-
-button {
-  color: white;
-  background: #0e0d0dec;
 }
 
 button span {
@@ -153,4 +117,22 @@ button span:nth-child(4) {
   100% {
     bottom: 100%;
   }
+}
+
+mat-card img {
+  width: 80%;
+  height: 70%;
+  margin: auto;
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  color: white;
+  background: #14161b;
+  margin-top: 3%;
+  margin-right: 2%;
 }
