@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       var opacity;
       var current = 1;
       var steps = $("fieldset").length;
+      console.log("teste" + steps)
 
       setProgressBar(current);
 
@@ -76,7 +77,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           },
           duration: 500
         });
-        //setProgressBar(--current);
+        setProgressBar(--current);
       });
 
       function setProgressBar(curStep) {
