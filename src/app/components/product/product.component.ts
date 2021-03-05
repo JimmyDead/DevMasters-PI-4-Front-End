@@ -47,9 +47,11 @@ export class ProductComponent implements AfterViewInit, OnInit {
     $('#product-main-img').slick({
       infinite: true,
       speed: 300,
-      dots: false,
+      dots: true,
       arrows: true,
       fade: true,
+      adaptiveHeight: true,
+      ocusOnSelect: true,
       asNavFor: '#product-imgs',
     });
 
@@ -64,9 +66,10 @@ export class ProductComponent implements AfterViewInit, OnInit {
       vertical: true,
       asNavFor: '#product-main-img',
       responsive: [{
-        breakpoint: 991,
+        breakpoint: 950,
         settings: {
           vertical: false,
+          centerMode: true,
           arrows: false,
           dots: true,
         }

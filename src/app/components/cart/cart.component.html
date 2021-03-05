@@ -24,7 +24,7 @@
           <tbody>
             <tr *ngFor="let carrinho of dataCarrinho.data; let i = index">
               <td class="d-flex align-items-center justify-content-around">
-                <img [src]="carrinho.produto.image" alt="{{carrinho.produto.title}}" height="60" class="order-1">
+                <a routerLink="/product/{{carrinho.produto.id}}"><img [src]="carrinho.produto.image" alt="{{carrinho.produto.title}}" height="60" class="order-1"></a>
                 <span class="text-danger mr-md-2" style="cursor:pointer;"><i class="fa fa-trash"
                     (click)="cartService.openDialogDeleteProduct(i, carrinho.produto)"></i></span>
               </td>
