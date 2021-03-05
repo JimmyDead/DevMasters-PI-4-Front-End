@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+      <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <h2 id="heading">Cadastre sua conta de usuário</h2>
+        <p>Preencha todos os campos do formulário para ir para a próxima etapa</p>
+        <form id="msform">
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active" id="account"><strong>Conta</strong></li>
+            <li id="personal"><strong>Pessoal</strong></li>
+            <li id="payment"><strong>Imagem</strong></li>
+            <li id="confirm"><strong>Finalizar</strong></li>
+          </ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0"
+              aria-valuemax="100">
+            </div>
+          </div>
+          <br> <!-- fieldsets -->
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Informação sobre a Conta:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Passo 1 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Email: *</label>
+              <input type="email" name="email" placeholder="Email" />
+              <label class="fieldlabels">Username: *</label>
+              <input type="text" name="uname" placeholder="UserName" />
+              <label class="fieldlabels">Senha: *</label>
+              <input type="password" name="pwd" placeholder="Password" />
+              <label class="fieldlabels">Confirmar Senha: *</label>
+              <input type="password" name="cpwd" placeholder="Confirmar Senha" />
+            </div>
+            <input type="button" name="next" class="next action-button" value="Próximo" />
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Informação Pessoal:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Passo 2 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Nome: *</label> 
+              <input type="text" name="fname" placeholder="Nome" />
+              <label class="fieldlabels">Sobrenome: *</label>
+              <input type="text" name="lname" placeholder="Sobrenome" />
+              <label class="fieldlabels">CPF: *</label>
+              <input type="text" name="cpf" placeholder="CPF" />
+              <label class="fieldlabels">Telefone/Celular: *</label>
+              <input type="text" name="phno" placeholder="Telefone/Celular" />
+              <label class="fieldlabels">Endereço:*</label>
+              <input type="text" name="phno_2" placeholder="Endereço." />
+              <label class="fieldlabels">Cep: *</label>
+              <input type="text" name="phno_3" placeholder="CEP." />
+            </div>
+            <input type="button" name="next" class="next action-button" value="Próximo" />
+            <input type="button" name="previous" class="previous action-button-previous" value="Voltar" />
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Upload de Imagem:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Passo 3 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Upload De Sua Foto:</label>
+              <input type="file" name="pic" accept="image/*">
+            </div>
+            <input type="button" name="next" class="next action-button" value="Cadastrar" />
+            <input type="button" name="previous" class="previous action-button-previous" value="Voltar" />
+          </fieldset>
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">Finalizar:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Passo 4 - 4</h2>
+                </div>
+              </div>
+              <br><br>
+              <h2 class="purple-text text-center"><strong>SUCESSO!</strong></h2> <br>
+              <div class="row justify-content-center">
+                <div class="col-3">
+                  <img src="/assets/img/logo.png" class="fit-image">
+                </div>
+              </div>
+              <br><br>
+              <div class="row justify-content-center">
+                <div class="col-7 text-center">
+                  <h5 class="purple-text text-center">Parabéns por se cadastrar em nosso site</h5>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
