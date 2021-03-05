@@ -32,16 +32,17 @@ form {
 }
 
 form #decrease {
-  margin-right: -4px;
+  /*margin-right: -4px;*/
   border-radius: 8px 0 0 8px;
   background: red;
   color: white;
 }
 
 form #increase {
-  margin-left: -4px;
+  /*margin-left: -4px;*/
+  margin-left: 1px;
   border-radius: 0 8px 8px 0;
-  background: green;
+  background: #15161D;
   color: white;
 }
 
