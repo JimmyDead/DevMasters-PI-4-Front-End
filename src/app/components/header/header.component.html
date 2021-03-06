@@ -16,6 +16,7 @@
       </ul>
     </div>
   </div>
+  
   <!-- /TOP HEADER -->
 
   <!-- MAIN HEADER -->
@@ -78,8 +79,8 @@
                       <img [src]="produto.produto?.image" alt="{{produto.produto.title}}" width="20px">
                     </div>
                     <div class="product-body">
-                      <h3 class="product-name"><a routerLink="" (click)="selecionarProduto(produto.produto.id)"
-                         >{{produto.produto.title}}</a></h3>
+                      <h3 class="product-name"><a routerLink=""
+                          (click)="selecionarProduto(produto.produto.id)">{{produto.produto.title}}</a></h3>
                       <h4 class="product-price"><span class="qty">{{produto.quantidadeEmCarrinho}} x
                         </span>{{produto.produto?.price | currency: 'BRL'}}</h4>
                     </div>
@@ -116,29 +117,25 @@
       </div>
       <!-- row -->
     </div>
-    <!-- container -->
+
+    <nav style="color: white;">
+      <!-- container -->
+      <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav py-3">
+          <!-- NAV -->
+          <ul class="main-nav nav">
+            <li><a class="nav-header" routerLink="/"><b>Home</b></a></li>
+            <li><a class="nav-header" href="#">Promoções</a></li>
+            <li><a class="nav-header" href="#">Categorias</a></li>
+            <li><a class="nav-header" href="#">Contate-nos</a></li>
+          </ul>
+          <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+      </div>
+    </nav>
   </div>
   <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
-
-<!-- NAVIGATION -->
-<nav id="navigation">
-  <!-- container -->
-  <div class="container">
-    <!-- responsive-nav -->
-    <div id="responsive-nav py-3">
-      <!-- NAV -->
-      <ul class="main-nav nav">
-        <li class="active"><a routerLink="/">Home</a></li>
-        <li><a href="#">Promoções</a></li>
-        <li><a href="#">Categorias</a></li>
-        <li><a href="#">Contate-nos</a></li>
-      </ul>
-      <!-- /NAV -->
-    </div>
-    <!-- /responsive-nav -->
-  </div>
-  <!-- /container -->
-</nav>
-<!-- /NAVIGATION -->
