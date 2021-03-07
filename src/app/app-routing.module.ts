@@ -1,3 +1,4 @@
+import { ReadProductComponent } from './components/read-product/read-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'create-product', component: CreateProductComponent
+  },
+  {
+    path: 'read-product', component: ReadProductComponent
   }
 ];
 

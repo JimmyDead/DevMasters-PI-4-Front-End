@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 import { FormsModule } from '@angular/forms';
 
@@ -31,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { ReadProductComponent } from './components/read-product/read-product.component';
 
 registerLocaleData(localePt);
 
@@ -47,7 +49,8 @@ registerLocaleData(localePt);
     ThankyouComponent,
     LoginComponent,
     RegisterComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    ReadProductComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ registerLocaleData(localePt);
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatTableModule,
     FormsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),

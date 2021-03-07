@@ -18,7 +18,7 @@ export class CrudProductService {
   }
 
   readProducts(): Observable<Produtos[]> {
-    return this.httpClient.get<Produtos[]>(this.SERVER_URL)
+    return this.httpClient.get<Produtos[]>(`${this.SERVER_URL}produtos`)
   }
 
   readProduct(id: string): Observable<Produtos> {
