@@ -22,17 +22,17 @@ export class CrudProductService {
   }
 
   readProduct(id: string): Observable<Produtos> {
-    const url = `${this.SERVER_URL}/${id}`;
+    const url = `${this.SERVER_URL}produtos/${id}`;
     return this.httpClient.get<Produtos>(url)
   }
 
   updateProduct(product: Produtos): Observable<Produtos> {
-    const url = `${this.SERVER_URL}/${product.id}`;
+    const url = `${this.SERVER_URL}produtos/${product.id}`;
     return this.httpClient.put<Produtos>(url, product)
   }
 
   deleteProduct(id: number): Observable<Produtos> {
-    const url = `${this.SERVER_URL}/${id}`;
+    const url = `${this.SERVER_URL}produtos/${id}`;
     return this.httpClient.delete<Produtos>(url)
   }
 

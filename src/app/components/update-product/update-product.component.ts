@@ -1,18 +1,19 @@
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CrudProductService } from './../../services/crud-product.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Produtos } from './../../model/produtos-data.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
-@Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
-})
-export class CreateProductComponent implements OnInit {
+declare let $: any
 
-  @Input() fileContent: any;
+@Component({
+  selector: 'app-update-product',
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.css']
+})
+export class UpdateProductComponent implements OnInit, AfterViewInit {
 
   product: Produtos = {
     title: '',
@@ -24,31 +25,29 @@ export class CreateProductComponent implements OnInit {
     quantity: 0
   }
 
+  images: string[]
+
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
 
   fileList = []
-
   fileInfos: Observable<any>;
 
-  constructor(private crudProductService: CrudProductService, private toast: ToastrService) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private crudProductService: CrudProductService, private toast: ToastrService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    this.crudProductService.readProduct(id).subscribe(product => {
+      this.product = product;
+      this.images = this.product.images.split(";")
+    });
   }
 
-  insertProduct() {
-    this.uploadFiles()
-    this.crudProductService.createProduct(this.product).subscribe(() => {
-      this.toast.success('Produduto Cadastrado com sucesso', 'Cadastro Efetuado', {
-        timeOut: 1500,
-        progressBar: true,
-        progressAnimation: 'increasing',
-        positionClass: 'toast-top-right'
-      })
-    })
-  }
+  ngAfterViewInit(): void {
 
+  }
 
   selectFiles(event) {
     this.progressInfos = [];
@@ -56,8 +55,9 @@ export class CreateProductComponent implements OnInit {
     for (let i = 0; i < this.selectFiles.length; i++) {
       this.fileList[i] = this.selectedFiles[i].name
     }
-   
+
   }
+
 
   upload(idx, file) {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
@@ -81,17 +81,29 @@ export class CreateProductComponent implements OnInit {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       if (this.selectedFiles.length > 1) {
         this.product.image = this.selectedFiles[0].name
-        if (i < this.selectedFiles.length - 1){
+        if (i < this.selectedFiles.length - 1) {
           this.product.images = this.product.images + this.selectedFiles[i].name + ";"
-        }else{
+        } else {
           this.product.images = this.product.images + this.selectedFiles[i].name
         }
       } else {
         this.product.image = this.selectedFiles[0].name
+        this.product.images = this.selectedFiles[0].name
       }
       this.upload(i, this.selectedFiles[i]);
     }
   }
 
+  updateProduct() {
+    this.uploadFiles()
+    this.crudProductService.updateProduct(this.product).subscribe(() => {
+      this.toast.success('Produduto Atualizado com sucesso', 'Produto Atualizado', {
+        timeOut: 1500,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        positionClass: 'toast-top-right'
+      })
+    })
+  }
 
 }

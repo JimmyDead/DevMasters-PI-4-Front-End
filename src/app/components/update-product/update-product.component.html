@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Cadastrar Produto</h1>
+  <h1>Atualizar Produto</h1>
   <div class="caption">
 
     <form>
@@ -12,7 +12,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-             <label>Preço R$</label>
+            <label>Preço R$</label>
             <input class="input" type="number" name="price" [(ngModel)]="product.price" placeholder="Preço R$">
           </div>
         </div>
@@ -25,20 +25,23 @@
             <input class="input" type="number" name="quantity" [(ngModel)]="product.quantity" placeholder="Quantidade">
           </div>
         </div>
-    
         <div class="col">
           <div class="form-group">
-             <label>Categoria</label>
-            <input class="input" type="text" name="category" placeholder="Categoria">
+            <label>Categoria</label>
+            <input class="input" type="text" name="category" [(ngModel)]="product.category" placeholder="Categoria">
           </div>
         </div>
       </div>
 
-      <div class="col-md-auto">
+      <h1>Imagens do Produto</h1>
+      <div class="gallery text-center"  *ngFor="let image of images">
+        <img [src]="image" width="100px" height="100px">
+      </div>
+
+      
+      <br><br>
+      <div class="col-6">
         <h2>Upload da Imagem</h2>
-        <!--<input class="form-control" type="file" />-->
-
-
         <div *ngFor="let progressInfo of progressInfos" class="mb-2">
           <span>{{ progressInfo.fileName }}</span>
           <div class="progress">
@@ -75,7 +78,7 @@
       </div>
 
       <br><br>
-      <button type="button" (click)="insertProduct()" class="btn btn-dark">Cadastrar Produto</button>
+      <button type="button" (click)="updateProduct()" class="btn btn-dark">Cadastrar Produto</button>
       <button type="button" class="btn btn-danger">Cancelar</button>
     </form>
   </div>

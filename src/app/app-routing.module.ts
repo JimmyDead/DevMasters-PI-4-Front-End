@@ -1,3 +1,4 @@
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { ReadProductComponent } from './components/read-product/read-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -37,6 +38,9 @@ const routes: Routes = [
   },
   {
     path: 'read-product', component: ReadProductComponent
+  },
+  {
+    path: "product/update/:id", component: UpdateProductComponent
   }
 ];
 

@@ -6,6 +6,5 @@ export interface Produtos {
     description: string,
     price: number,
     quantity: number,
-    shortDesc: string,
-    catId: number
+    category: string
 }
