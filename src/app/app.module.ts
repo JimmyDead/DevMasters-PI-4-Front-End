@@ -30,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 registerLocaleData(localePt);
 
@@ -45,7 +46,8 @@ registerLocaleData(localePt);
     DeleteProductComponent,
     ThankyouComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,

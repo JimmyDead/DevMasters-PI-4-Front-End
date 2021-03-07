@@ -1,11 +1,11 @@
 export interface Produtos {
-    id: number,
+    id ?: number,
     title: string,
     image: string,
     images: string,
     description: string,
     price: number,
     quantity: number,
-    shortDesc: number,
+    shortDesc: string,
     catId: number
 }
