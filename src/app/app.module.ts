@@ -34,6 +34,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { ReadProductComponent } from './components/read-product/read-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { RemoveProductComponent } from './components/remove-product/remove-product.component';
 
 registerLocaleData(localePt);
 
@@ -52,7 +53,8 @@ registerLocaleData(localePt);
     RegisterComponent,
     CreateProductComponent,
     ReadProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    RemoveProductComponent
   ],
   imports: [
     BrowserModule,

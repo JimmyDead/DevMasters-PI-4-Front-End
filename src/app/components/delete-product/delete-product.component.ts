@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Produtos } from './../../model/produtos-data.model';
 import { CartService } from './../../services/cart.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class DeleteProductComponent implements OnInit {
 
   constructor(private cartService: CartService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private toast: ToastrService) { }
 
   produto: Produtos
   index: any
@@ -22,7 +23,14 @@ export class DeleteProductComponent implements OnInit {
   }
 
   deleteProduto() {
-    this.cartService.deleteProdutoCarrinho(this.index)
+    this.cartService.deleteProdutoCarrinho(this.index).then(() => {
+      this.toast.success('Produduto removido com sucesso', 'Produto Removido', {
+        timeOut: 1500,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        positionClass: 'toast-top-right'
+      })
+    })
     this.cancel()
   }
 

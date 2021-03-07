@@ -24,7 +24,7 @@
             </td>
 
             <td>
-             {{produto.title}}
+              {{produto.title}}
             </td>
 
             <td>
@@ -32,7 +32,7 @@
             </td>
 
             <td>
-             {{produto.quantity}}
+              {{produto.quantity}}
             </td>
 
             <td>
@@ -50,9 +50,12 @@
             <td>
               <div class="value-button">
                 <a routerLink="/product/update/{{produto.id}}" class="edit">
-                 <i class="fa fa-pencil-square-o fa-2x"></i>
+                  <i class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
-                <i class="fa fa-trash-o fa-2x"></i>
+            
+                <a routerLink="#"><!--DEIXAR A ROTA 'VAZIA' ASSIM LANÇA UMA EXCEÇÃO NO CONSOLE-->
+                  <i class="fa fa-trash-o fa-2x" (click)="openDialogDeleteProduct(produto)"></i>
+                </a>
               </div>
             </td>
           </tr>
