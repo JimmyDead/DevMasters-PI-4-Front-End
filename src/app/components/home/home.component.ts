@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { CartService } from './../../services/cart.service';
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
     private cartService: CartService) { }
 
   produtos: Produtos[]
+  SERVICE_IMAGE = environment.serviceImage
 
   ngOnInit(): void {
     //carregando os valores do produto na inicialização da classe ultilizando metodo para pegar todos os produtos cadastrados

@@ -1,3 +1,5 @@
+import { Produtos } from './../../model/produtos-data.model';
+import { environment } from 'src/environments/environment';
 import { CartService } from './../../services/cart.service';
 import { ProductService } from './../../services/product.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
@@ -15,8 +17,18 @@ declare let $: any; //usando jquery
 export class ProductComponent implements AfterViewInit, OnInit {
 
   id: number;
-  produto;
+  produto: Produtos = {
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    images: '',
+    quantity: 0
+  }
+
   imagesProdutos: any[] = [];
+  SERVER_IMAGE = environment.serviceImage
 
   @ViewChild('quantity') quantityInput; //pegando elemento como um seletor javascript
 
@@ -35,8 +47,12 @@ export class ProductComponent implements AfterViewInit, OnInit {
         this.id = +produtoId;
         this.productService.getProduct(this.id).subscribe(prod => { //funcao buscando um produto especifico
           this.produto = prod
+          this.produto.image = this.SERVER_IMAGE + this.produto.image
           if (prod.images !== null) {
             this.imagesProdutos = prod.images.split(';'); //pegando diversas imagens caso tenho, no caso as path estão separadas por ";" então faço um split e armazeno em um array
+            for (let i = 0; i < this.imagesProdutos.length; i++) {
+              this.imagesProdutos[i] = this.SERVER_IMAGE + this.imagesProdutos[i]
+            }
           }
         });
       });
@@ -48,7 +64,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
       infinite: true,
       speed: 300,
       dots: true,
-      arrows: true,
+      arrows: false,
       fade: true,
       adaptiveHeight: true,
       ocusOnSelect: true,
@@ -59,7 +75,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
     $('#product-imgs').slick({
       slidesToShow: 3,
       slidesToScroll: 1,
-      arrows: true,
+      arrows: false,
       centerMode: true,
       focusOnSelect: true,
       centerPadding: 0,

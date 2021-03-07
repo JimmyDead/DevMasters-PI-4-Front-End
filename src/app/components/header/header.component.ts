@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { CartService } from './../../services/cart.service';
 import { CartModelServer } from './../../model/cart.model';
@@ -12,6 +13,8 @@ export class HeaderComponent implements OnInit {
 
   carrinhoData: CartModelServer
   carrinhoTotal: number
+
+  SERVICE_IMAGE = environment.serviceImage
 
   constructor(public cartService: CartService, private router: Router) { }
 

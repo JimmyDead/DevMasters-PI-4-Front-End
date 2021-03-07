@@ -16,7 +16,7 @@
       </ul>
     </div>
   </div>
-  
+
   <!-- /TOP HEADER -->
 
   <!-- MAIN HEADER -->
@@ -76,7 +76,7 @@
                 <div class="cart-list" *ngIf="carrinhoData.data[0].quantidadeEmCarrinho !== 0 ">
                   <div class="product-widget" *ngFor="let produto of carrinhoData.data; let i=index">
                     <div class="product-img">
-                      <img [src]="produto.produto?.image" alt="{{produto.produto.title}}" width="20px">
+                      <img [src]="SERVICE_IMAGE + produto.produto?.image" alt="{{produto.produto.title}}" width="20px">
                     </div>
                     <div class="product-body">
                       <h3 class="product-name"><a routerLink=""

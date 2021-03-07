@@ -75,7 +75,7 @@
 
           <div class="col-md-4 col-sm-6" *ngFor="let produto of produtos">
             <div class="card my-2">
-              <img [src]="produto.image" alt="{{produto.title}}" width="200px" class="card-img-top"
+              <img [src]="SERVICE_IMAGE + produto.image" alt="{{produto.title}}" width="200px" class="card-img-top"
                 style="cursor: pointer;" (click)="selecionarProduto(produto.id)">
               <div class="card-header">
                 <div class="card-title">

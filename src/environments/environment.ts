@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  serverURL: 'http://localhost:3000/'
+  serverURL: 'http://localhost:3000/',
+  serviceImage: 'http://localhost:8080/file/download?path='
 };
 
 /*
