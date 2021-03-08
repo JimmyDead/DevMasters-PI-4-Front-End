@@ -28,7 +28,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
   }
 
   imagesProdutos: any[] = [];
-  SERVER_IMAGE = environment.serviceImage
+  SERVER_IMAGE
 
   @ViewChild('quantity') quantityInput; //pegando elemento como um seletor javascript
 
@@ -38,6 +38,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    this.SERVER_IMAGE = environment.serviceImage
     this.router.paramMap
       .pipe
       (map((param: ParamMap) => {
@@ -47,12 +48,8 @@ export class ProductComponent implements AfterViewInit, OnInit {
         this.id = +produtoId;
         this.productService.getProduct(this.id).subscribe(prod => { //funcao buscando um produto especifico
           this.produto = prod
-          this.produto.image = this.SERVER_IMAGE + this.produto.image
           if (prod.images !== null) {
             this.imagesProdutos = prod.images.split(';'); //pegando diversas imagens caso tenho, no caso as path estão separadas por ";" então faço um split e armazeno em um array
-            for (let i = 0; i < this.imagesProdutos.length; i++) {
-              this.imagesProdutos[i] = this.SERVER_IMAGE + this.imagesProdutos[i]
-            }
           }
         });
       });

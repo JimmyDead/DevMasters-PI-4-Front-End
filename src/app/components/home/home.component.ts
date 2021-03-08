@@ -16,9 +16,10 @@ export class HomeComponent implements OnInit {
     private cartService: CartService) { }
 
   produtos: Produtos[]
-  SERVICE_IMAGE = environment.serviceImage
+  SERVICE_IMAGE
 
   ngOnInit(): void {
+    this.SERVICE_IMAGE = environment.serviceImage
     //carregando os valores do produto na inicialização da classe ultilizando metodo para pegar todos os produtos cadastrados
     this.productService.getAllProducts().subscribe(produtos => {
       this.produtos = produtos

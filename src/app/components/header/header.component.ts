@@ -14,11 +14,12 @@ export class HeaderComponent implements OnInit {
   carrinhoData: CartModelServer
   carrinhoTotal: number
 
-  SERVICE_IMAGE = environment.serviceImage
+  SERVICE_IMAGE
 
   constructor(public cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
+    this.SERVICE_IMAGE = environment.serviceImage
     //pegando informacoes da classe cartService na inicializacao
     this.cartService.totalCarrinho.subscribe(total => this.carrinhoTotal = total)
     this.cartService.dataCarrinho.subscribe(data => this.carrinhoData = data)

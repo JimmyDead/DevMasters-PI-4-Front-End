@@ -12,7 +12,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-             <label>Preço R$</label>
+            <label>Preço R$</label>
             <input class="input" type="number" name="price" [(ngModel)]="product.price" placeholder="Preço R$">
           </div>
         </div>
@@ -25,10 +25,10 @@
             <input class="input" type="number" name="quantity" [(ngModel)]="product.quantity" placeholder="Quantidade">
           </div>
         </div>
-    
+
         <div class="col">
           <div class="form-group">
-             <label>Categoria</label>
+            <label>Categoria</label>
             <input class="input" type="text" name="category" placeholder="Categoria">
           </div>
         </div>
@@ -37,7 +37,6 @@
       <div class="col-md-auto">
         <h2>Upload da Imagem</h2>
         <!--<input class="form-control" type="file" />-->
-
 
         <div *ngFor="let progressInfo of progressInfos" class="mb-2">
           <span>{{ progressInfo.fileName }}</span>
@@ -51,7 +50,8 @@
         </div>
       </div>
 
-      <p> Escolha uma ou mais imagem(s)</p>
+      <span> Escolha uma ou mais imagem(s)</span>
+      <br>
       <label class="btn btn-default">
         <input type="file" multiple (change)="selectFiles($event)" />
       </label>
@@ -60,9 +60,13 @@
 
       <div class="card">
         <div class="card-header">Lista de Imagens</div>
-        <ul class="list-group list-group-flush" *ngFor="let file of fileList">
+        <ul class="list-group list-group-flush" *ngFor="let file of fileList;let i = index">
           <li class="list-group-item">
-            <p>Nome da imagem: {{file}}</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" (change)="changeMainImage(i)" id="imagemPrincipal"
+                name="imagemPrincipal">
+              <label>Nome da imagem: {{file}}</label>
+            </div>
           </li>
         </ul>
       </div>

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { RemoveProductComponent } from './../remove-product/remove-product.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Produtos } from './../../model/produtos-data.model';
@@ -12,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class ReadProductComponent implements OnInit {
 
   products: Produtos[]
+  SERVICE_IMAGE
 
   displayedColumns: string[] = ['id', 'title', 'price', 'quantity',
     'description', 'image', 'images', 'category', 'action']
@@ -21,6 +23,7 @@ export class ReadProductComponent implements OnInit {
   ngOnInit(): void {
     this.crudProductService.readProducts().subscribe(products => {
       this.products = products
+      this.SERVICE_IMAGE = environment.serviceImage
     })
   }
 

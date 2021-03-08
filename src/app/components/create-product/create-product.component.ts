@@ -53,10 +53,9 @@ export class CreateProductComponent implements OnInit {
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    for (let i = 0; i < this.selectFiles.length; i++) {
+    for (let i = 0; i < this.selectedFiles.length; i++){
       this.fileList[i] = this.selectedFiles[i].name
     }
-   
   }
 
   upload(idx, file) {
@@ -67,7 +66,7 @@ export class CreateProductComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          this.fileInfos = this.crudProductService.getFiles();
+          //this.fileInfos = this.crudProductService.getFiles();
         }
       },
       err => {
@@ -80,18 +79,20 @@ export class CreateProductComponent implements OnInit {
     this.message = '';
     for (let i = 0; i < this.selectedFiles.length; i++) {
       if (this.selectedFiles.length > 1) {
-        this.product.image = this.selectedFiles[0].name
-        if (i < this.selectedFiles.length - 1){
+        if (i < this.selectedFiles.length - 1) {
           this.product.images = this.product.images + this.selectedFiles[i].name + ";"
-        }else{
+        } else {
           this.product.images = this.product.images + this.selectedFiles[i].name
         }
       } else {
-        this.product.image = this.selectedFiles[0].name
+        this.product.images = this.selectedFiles[0].name
       }
       this.upload(i, this.selectedFiles[i]);
     }
   }
 
+  changeMainImage(index){
+    this.product.image = this.selectedFiles[index].name
+  }
 
 }

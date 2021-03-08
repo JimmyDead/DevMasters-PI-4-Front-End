@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CrudProductService } from './../../services/crud-product.service';
@@ -25,6 +26,8 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     quantity: 0
   }
 
+  SERVICE_IMAGE
+
   images: string[]
 
   selectedFiles: FileList;
@@ -38,6 +41,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     private crudProductService: CrudProductService, private toast: ToastrService) { }
 
   ngOnInit(): void {
+    this.SERVICE_IMAGE = environment.serviceImage
     const id = this.route.snapshot.paramMap.get('id')
     this.crudProductService.readProduct(id).subscribe(product => {
       this.product = product;
@@ -46,16 +50,14 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
   }
 
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    for (let i = 0; i < this.selectFiles.length; i++) {
+    for (let i = 0; i < this.selectedFiles.length; i++) {
       this.fileList[i] = this.selectedFiles[i].name
     }
-
   }
 
 
@@ -67,7 +69,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          this.fileInfos = this.crudProductService.getFiles();
+          //this.fileInfos = this.crudProductService.getFiles();
         }
       },
       err => {
@@ -80,18 +82,20 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     this.message = '';
     for (let i = 0; i < this.selectedFiles.length; i++) {
       if (this.selectedFiles.length > 1) {
-        this.product.image = this.selectedFiles[0].name
         if (i < this.selectedFiles.length - 1) {
           this.product.images = this.product.images + this.selectedFiles[i].name + ";"
         } else {
           this.product.images = this.product.images + this.selectedFiles[i].name
         }
       } else {
-        this.product.image = this.selectedFiles[0].name
         this.product.images = this.selectedFiles[0].name
       }
       this.upload(i, this.selectedFiles[i]);
     }
+  }
+
+  changeMainImage(index) {
+    this.product.image = this.selectedFiles[index].name
   }
 
   updateProduct() {
@@ -106,4 +110,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     })
   }
 
+  cancel(){
+    this.router.navigate(['/read-product'])
+  }
 }

@@ -20,8 +20,17 @@ button {
 
 
 
+
+
+
+
+/*********************************************************/
+
+
+
 div.gallery {
-  margin: 5px;
+  margin: 5%;
+  margin-bottom: 10%;
   border: 1px solid #ccc;
   float: left;
   width: 180px;
