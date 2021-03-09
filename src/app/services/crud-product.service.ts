@@ -14,7 +14,10 @@ export class CrudProductService {
   constructor(private httpClient: HttpClient) { }
 
   createProduct(product: Produtos): Observable<Produtos> {
-    return this.httpClient.post<Produtos>(`${this.SERVER_URL}produtos`, product)
+    let url = `http://localhost:8080/file/upload/product?title=${product.title}&price=${product.price}&description=${product.description}&category=${product.category}&quantity=${product.quantity}`
+    console.log(url)
+    return this.httpClient.put<Produtos>(url, product)
+    //return this.httpClient.post<Produtos>(`${this.SERVER_URL}produtos`, product)
   }
 
   readProducts(): Observable<Produtos[]> {
@@ -43,7 +46,7 @@ export class CrudProductService {
 
     formData.append('file', file);
 
-    const req = new HttpRequest('POST','http://localhost:8080/file/upload', formData, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/file/upload', formData, {
       reportProgress: true,
       responseType: 'json'
     });

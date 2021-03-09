@@ -1,3 +1,4 @@
+import { ViewCrudComponent } from './components/view-crud/view-crud.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { ReadProductComponent } from './components/read-product/read-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
@@ -41,6 +42,9 @@ const routes: Routes = [
   },
   {
     path: "product/update/:id", component: UpdateProductComponent
+  },
+  {
+    path: "view-crud", component: ViewCrudComponent
   }
 ];
 

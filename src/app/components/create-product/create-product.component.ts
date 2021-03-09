@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CrudProductService } from './../../services/crud-product.service';
@@ -32,13 +33,14 @@ export class CreateProductComponent implements OnInit {
 
   fileInfos: Observable<any>;
 
-  constructor(private crudProductService: CrudProductService, private toast: ToastrService) { }
+  constructor(private crudProductService: CrudProductService, private toast: ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   insertProduct() {
-    this.uploadFiles()
+   // this.uploadFiles()
     this.crudProductService.createProduct(this.product).subscribe(() => {
       this.toast.success('Produduto Cadastrado com sucesso', 'Cadastro Efetuado', {
         timeOut: 1500,
@@ -53,7 +55,7 @@ export class CreateProductComponent implements OnInit {
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    for (let i = 0; i < this.selectedFiles.length; i++){
+    for (let i = 0; i < this.selectedFiles.length; i++) {
       this.fileList[i] = this.selectedFiles[i].name
     }
   }
@@ -91,8 +93,12 @@ export class CreateProductComponent implements OnInit {
     }
   }
 
-  changeMainImage(index){
+  changeMainImage(index) {
     this.product.image = this.selectedFiles[index].name
+  }
+
+  cancel() {
+    this.router.navigate(['/view-crud'])
   }
 
 }

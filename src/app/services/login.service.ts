@@ -17,7 +17,7 @@ export class LoginService {
   login(userName: string, password: string) {
     let url = `${this.SERVER_URL}login?username=${userName}&password=${password}`
     //AINDA NÃO ESTÁ PRONTO
-    /*this.httpClient.get(url).subscribe(result => {
+    this.httpClient.get(url).subscribe(result => {
       let response = result[0]
       if (response.user_name === userName && response.password === password) {
         this.toast.success('Login Efetuado com sucesso', 'Login', {
@@ -26,7 +26,7 @@ export class LoginService {
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-
+        this.router.navigate(['/view-crud'])
       } else {
         this.toast.error('Senha ou usuario incorretos', 'Login', {
           timeOut: 1500,
@@ -35,6 +35,6 @@ export class LoginService {
           positionClass: 'toast-top-right'
         })
       }
-    })*/
+    })
   }
 }
