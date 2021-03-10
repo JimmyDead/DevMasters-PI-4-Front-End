@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(public cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
-    this.SERVICE_IMAGE = environment.serviceImage
+    this.SERVICE_IMAGE = environment.serviceImage + '/download?file='
     //pegando informacoes da classe cartService na inicializacao
     this.cartService.totalCarrinho.subscribe(total => this.carrinhoTotal = total)
     this.cartService.dataCarrinho.subscribe(data => this.carrinhoData = data)

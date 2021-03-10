@@ -9,52 +9,54 @@ import { Injectable } from '@angular/core';
 })
 export class CrudProductService {
 
-  SERVER_URL = environment.serverURL
+  URL_PRODUCT = environment.serviceProduct
+
+  URL_FILE = environment.serviceImage
 
   constructor(private httpClient: HttpClient) { }
 
   createProduct(product: Produtos): Observable<Produtos> {
-    let url = `http://localhost:8080/file/upload/product?title=${product.title}&price=${product.price}&description=${product.description}&category=${product.category}&quantity=${product.quantity}`
-    console.log(url)
-    return this.httpClient.put<Produtos>(url, product)
-    //return this.httpClient.post<Produtos>(`${this.SERVER_URL}produtos`, product)
+    return this.httpClient.post<Produtos>(`${this.URL_PRODUCT}/create`, product)
+    // return this.httpClient.post<Produtos>(`${this.SERVER_URL}produtos`, product)
   }
 
   readProducts(): Observable<Produtos[]> {
-    return this.httpClient.get<Produtos[]>(`${this.SERVER_URL}produtos`)
+    return this.httpClient.get<Produtos[]>(`${this.URL_PRODUCT}/list-all`)
+    //return this.httpClient.get<Produtos[]>(`${this.SERVER_URL}produtos`)
   }
 
   readProduct(id: string): Observable<Produtos> {
-    const url = `${this.SERVER_URL}produtos/${id}`;
+    const url = `${this.URL_PRODUCT}/list?id=${id}`;
+    //const url = `${this.SERVER_URL}produtos/${id}`;
     return this.httpClient.get<Produtos>(url)
   }
 
   updateProduct(product: Produtos): Observable<Produtos> {
-    const url = `${this.SERVER_URL}produtos/${product.id}`;
-    return this.httpClient.put<Produtos>(url, product)
+    //const url = `${this.SERVER_URL}update${product.id}`;
+    //const url = `${this.SERVER_URL}produtos/${product.id}`;
+    return this.httpClient.put<Produtos>(`${this.URL_PRODUCT}/update`, product)
   }
 
   deleteProduct(id: number): Observable<Produtos> {
-    const url = `${this.SERVER_URL}produtos/${id}`;
+    const url = `${this.URL_PRODUCT}/delete?id=${id}`;
+    //const url = `${this.SERVER_URL}produtos/${id}`;
     return this.httpClient.delete<Produtos>(url)
   }
-
-
 
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', 'http://localhost:8080/file/upload', formData, {
+    const req = new HttpRequest('POST', `${this.URL_FILE}/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.httpClient.request(req);
   }
 
-  getFiles(): Observable<any> {
+ /* getFiles(): Observable<any> {
     return this.httpClient.get(`${this.SERVER_URL}/files`);
-  }
+  }*/
 
 }

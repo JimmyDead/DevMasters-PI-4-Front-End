@@ -23,7 +23,7 @@ export class ReadProductComponent implements OnInit {
   ngOnInit(): void {
     this.crudProductService.readProducts().subscribe(products => {
       this.products = products
-      this.SERVICE_IMAGE = environment.serviceImage
+      this.SERVICE_IMAGE = environment.serviceImage + '/download?file='
     })
   }
 

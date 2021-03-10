@@ -29,12 +29,12 @@
         <div id="product-main-img">
           <ng-template [ngIf]="imagesProdutos.length === 0">
             <div class="product-preview">
-              <img [src]="SERVER_IMAGE + produto.image" alt="">
+              <img [src]="SERVER_IMAGE + produto.image + '&id=' + id" alt="">
             </div>
           </ng-template>
           <ng-template [ngIf]="imagesProdutos.length > 0">
             <div class="product-preview" *ngFor="let imgProd of imagesProdutos">
-              <img [src]="SERVER_IMAGE + imgProd" alt="">
+              <img [src]="SERVER_IMAGE + imgProd + '&id=' + id" alt="">
             </div>
           </ng-template>
         </div>
@@ -46,7 +46,7 @@
         <ng-template [ngIf]="imagesProdutos.length > 0">
           <div id="product-imgs">
             <div *ngFor="let imgProd of imagesProdutos" class="product-preview">
-              <img [src]="SERVER_IMAGE + imgProd" alt="">
+              <img [src]="SERVER_IMAGE + imgProd + '&id=' + id" alt="">
             </div>
           </div>
 
@@ -55,7 +55,7 @@
         <ng-template [ngIf]="imagesProdutos.length === 0">
           <div id="product-imgs">
             <div class="product-preview">
-              <img [src]="SERVER_IMAGE + produto.image" alt="">
+              <img [src]="SERVER_IMAGE + produto.image + '&id=' + id" alt="">
             </div>
           </div>
         </ng-template>

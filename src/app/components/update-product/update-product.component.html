@@ -35,7 +35,7 @@
 
       <h1>Imagens do Produto</h1>
       <div class="gallery text-center" *ngFor="let image of images">
-        <img [src]="SERVICE_IMAGE + image" width="100px" height="100px">
+        <img [src]="SERVICE_IMAGE + image + '&id=' + id" width="100px" height="100px">
       </div>
 
 
@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        
+
         <br>
         <div>
           <label class="btn btn-default">

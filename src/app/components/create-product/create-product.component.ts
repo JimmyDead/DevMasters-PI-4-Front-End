@@ -40,7 +40,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   insertProduct() {
-   // this.uploadFiles()
+    this.getFilesName()
     this.crudProductService.createProduct(this.product).subscribe(() => {
       this.toast.success('Produduto Cadastrado com sucesso', 'Cadastro Efetuado', {
         timeOut: 1500,
@@ -48,6 +48,7 @@ export class CreateProductComponent implements OnInit {
         progressAnimation: 'increasing',
         positionClass: 'toast-top-right'
       })
+      this.uploadFiles()
     })
   }
 
@@ -78,7 +79,14 @@ export class CreateProductComponent implements OnInit {
   }
 
   uploadFiles() {
-    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      if (this.selectedFiles.length >= 1) {
+        this.upload(i, this.selectedFiles[i]);
+      }
+    }
+  }
+
+  getFilesName() {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       if (this.selectedFiles.length > 1) {
         if (i < this.selectedFiles.length - 1) {
@@ -89,7 +97,6 @@ export class CreateProductComponent implements OnInit {
       } else {
         this.product.images = this.selectedFiles[0].name
       }
-      this.upload(i, this.selectedFiles[i]);
     }
   }
 

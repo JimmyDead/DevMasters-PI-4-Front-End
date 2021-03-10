@@ -19,11 +19,11 @@ export class HomeComponent implements OnInit {
   SERVICE_IMAGE
 
   ngOnInit(): void {
-    this.SERVICE_IMAGE = environment.serviceImage
     //carregando os valores do produto na inicialização da classe ultilizando metodo para pegar todos os produtos cadastrados
     this.productService.getAllProducts().subscribe(produtos => {
       this.produtos = produtos
     })
+    this.SERVICE_IMAGE = environment.serviceImage + "/download?file="
   }
 
   //metodo que leva para pagina de um produto especifico contendo suas informações

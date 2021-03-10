@@ -38,7 +38,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.SERVER_IMAGE = environment.serviceImage
+    this.SERVER_IMAGE = environment.serviceImage + '/download?file='
     this.router.paramMap
       .pipe
       (map((param: ParamMap) => {

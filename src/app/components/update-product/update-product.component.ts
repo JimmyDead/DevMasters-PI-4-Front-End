@@ -16,6 +16,8 @@ declare let $: any
 })
 export class UpdateProductComponent implements OnInit, AfterViewInit {
 
+  id
+
   product: Produtos = {
     title: '',
     price: 0,
@@ -41,9 +43,9 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     private crudProductService: CrudProductService, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.SERVICE_IMAGE = environment.serviceImage
-    const id = this.route.snapshot.paramMap.get('id')
-    this.crudProductService.readProduct(id).subscribe(product => {
+    this.SERVICE_IMAGE = environment.serviceImage + '/download?file='
+    this.id = this.route.snapshot.paramMap.get('id')
+    this.crudProductService.readProduct(this.id).subscribe(product => {
       this.product = product;
       this.images = this.product.images.split(";")
     });
@@ -59,7 +61,6 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
       this.fileList[i] = this.selectedFiles[i].name
     }
   }
-
 
   upload(idx, file) {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
@@ -79,7 +80,14 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   }
 
   uploadFiles() {
-    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      if (this.selectedFiles.length >= 1) {
+        this.upload(i, this.selectedFiles[i]);
+      }
+    }
+  }
+
+  getFilesName() {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       if (this.selectedFiles.length > 1) {
         if (i < this.selectedFiles.length - 1) {
@@ -90,7 +98,6 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
       } else {
         this.product.images = this.selectedFiles[0].name
       }
-      this.upload(i, this.selectedFiles[i]);
     }
   }
 
@@ -99,7 +106,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   }
 
   updateProduct() {
-    this.uploadFiles()
+    this.getFilesName()
     this.crudProductService.updateProduct(this.product).subscribe(() => {
       this.toast.success('Produduto Atualizado com sucesso', 'Produto Atualizado', {
         timeOut: 1500,
@@ -107,10 +114,11 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
         progressAnimation: 'increasing',
         positionClass: 'toast-top-right'
       })
+      this.uploadFiles()
     })
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['/read-product'])
   }
 }

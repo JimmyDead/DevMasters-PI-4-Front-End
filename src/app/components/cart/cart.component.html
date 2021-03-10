@@ -24,7 +24,9 @@
           <tbody>
             <tr *ngFor="let carrinho of dataCarrinho.data; let i = index">
               <td class="d-flex align-items-center justify-content-around">
-                <a routerLink="/product/{{carrinho.produto.id}}"><img [src]="carrinho.produto.image" alt="{{carrinho.produto.title}}" height="60" class="order-1"></a>
+                <a routerLink="/product/{{carrinho.produto.id}}"><img
+                    [src]="SERVICE_IMAGE + carrinho.produto.image + '&id=' +  carrinho.produto.id"
+                    alt="{{carrinho.produto.title}}" height="60" class="order-1"></a>
                 <span class="text-danger mr-md-2" style="cursor:pointer;"><i class="fa fa-trash"
                     (click)="cartService.openDialogDeleteProduct(i, carrinho.produto)"></i></span>
               </td>
@@ -46,7 +48,8 @@
                   <input type="number" id="number" [value]="carrinho.quantidadeEmCarrinho" readonly
                     [max]=carrinho.produto.quantity>
 
-                  <div class="value-button" id="increase" (click)="escolherQuantidade(i,true)" style="margin-bottom: 3px;">
+                  <div class="value-button" id="increase" (click)="escolherQuantidade(i,true)"
+                    style="margin-bottom: 3px;">
                     <i class="fa fa-plus"></i>
                   </div>
                 </form>

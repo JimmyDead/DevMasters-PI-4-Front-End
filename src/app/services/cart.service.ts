@@ -17,8 +17,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CartService {
 
-  private SERVER_URL = environment.serverURL
-
   //criando objeto que vai armazenar os dados do carrinho
   private cartDataClient: CartModelPublic = {
     total: 0,

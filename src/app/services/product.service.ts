@@ -11,14 +11,14 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  private SERVER_URL = environment.serverURL
+  private URL_PRODUCT = environment.serviceProduct
 
   getAllProducts(): Observable<Produtos[]> {
-    return this.http.get<Produtos[]>(`${this.SERVER_URL}produtos`); 
+    return this.http.get<Produtos[]>(`${this.URL_PRODUCT}/list-all`);
   }
 
   getProduct(id: number): Observable<Produtos> {
-    const url = `${this.SERVER_URL}produtos/${id}`;
+    const url = `${this.URL_PRODUCT}?id=${id}`;
     return this.http.get<Produtos>(url)
   }
 }

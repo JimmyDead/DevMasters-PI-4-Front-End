@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { CartService } from './../../services/cart.service';
 import { CartModelServer } from './../../model/cart.model';
 import { Component, OnInit } from '@angular/core';
@@ -13,9 +14,12 @@ export class CartComponent implements OnInit {
   totalCarrinho: number;
   subTotal: number;
 
+  SERVICE_IMAGE
+
   constructor(public cartService: CartService) { }
 
   ngOnInit(): void {
+    this.SERVICE_IMAGE = environment.serviceImage + 'download?file='
     //pegando informacoes do cart service para serem mostradas na pagina
     this.cartService.dataCarrinho.subscribe((data: CartModelServer) => this.dataCarrinho = data)
     this.cartService.totalCarrinho.subscribe(total => this.totalCarrinho = total)
