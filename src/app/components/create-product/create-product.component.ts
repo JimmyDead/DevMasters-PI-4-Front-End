@@ -49,6 +49,7 @@ export class CreateProductComponent implements OnInit {
         positionClass: 'toast-top-right'
       })
       this.uploadFiles()
+      this.router.navigate(['/view-crud'])
     })
   }
 

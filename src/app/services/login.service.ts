@@ -15,7 +15,7 @@ export class LoginService {
   private SERVER_URL = environment.serverURL
 
   login(userName: string, password: string) {
-    let url = `${this.SERVER_URL}login?username=${userName}&password=${password}`
+    let url = `${this.SERVER_URL}/login?username=${userName}&password=${password}`
     //AINDA NÃO ESTÁ PRONTO
     this.httpClient.get(url).subscribe(result => {
       let response = result[0]

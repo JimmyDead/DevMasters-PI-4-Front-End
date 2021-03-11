@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Produtos } from './../../model/produtos-data.model';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -15,7 +16,7 @@ export class RemoveProductComponent implements OnInit {
 
   constructor(private crudProductService: CrudProductService,
     @Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,
-     private toast: ToastrService) { }
+    private toast: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.produto = this.data.produto
@@ -30,11 +31,16 @@ export class RemoveProductComponent implements OnInit {
         positionClass: 'toast-top-right'
       })
       this.cancel()
+      this.router.navigate(['/view-crud'])
       window.location.reload();
     })
+
+    //this.router.navigate(['/view-crud'])
+
+
   }
 
-  cancel(): void {
+  cancel() {
     this.dialog.closeAll()
   }
 

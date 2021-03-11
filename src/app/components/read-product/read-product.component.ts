@@ -30,7 +30,7 @@ export class ReadProductComponent implements OnInit {
   openDialogDeleteProduct(produto) {
     this.dialog.open(RemoveProductComponent, {
       data: {
-        produto: produto,
+        produto: produto
       }
     });
   }

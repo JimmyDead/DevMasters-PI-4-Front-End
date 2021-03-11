@@ -115,6 +115,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
         positionClass: 'toast-top-right'
       })
       this.uploadFiles()
+      this.router.navigate(['/view-crud'])
     })
   }
 
