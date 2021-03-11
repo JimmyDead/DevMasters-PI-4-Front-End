@@ -13,6 +13,7 @@
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Imagem Principal</th>
+            <th>Ver Detalhes</th>
             <th>Editar / Excluir</th>
           </tr>
         </thead>
@@ -36,7 +37,7 @@
             </td>
 
             <td>
-              <p>produto.category</p>
+              <p>{{produto.category}}</p>
             </td>
 
             <td>
@@ -48,12 +49,19 @@
             </td>
 
             <td>
+              <a routerLink="/product/{{produto.id}}">
+                <i class="fa fa-info-circle fa-2x"></i>
+              </a>
+            </td>
+
+            <td>
               <div class="value-button">
                 <a routerLink="/product/update/{{produto.id}}" class="edit">
                   <i class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
-            
-                <a><!--DEIXAR A ROTA 'VAZIA' ASSIM LANÇA UMA EXCEÇÃO NO CONSOLE-->
+
+                <a>
+                  <!--DEIXAR A ROTA 'VAZIA' ASSIM LANÇA UMA EXCEÇÃO NO CONSOLE-->
                   <i class="fa fa-trash-o fa-2x" (click)="openDialogDeleteProduct(produto)"></i>
                 </a>
               </div>
