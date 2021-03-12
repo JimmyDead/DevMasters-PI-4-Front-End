@@ -13,8 +13,6 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 })
 export class CreateProductComponent implements OnInit {
 
-  @Input() fileContent: any;
-
   product: Produtos = {
     title: '',
     price: 0,
@@ -22,16 +20,20 @@ export class CreateProductComponent implements OnInit {
     category: '',
     image: '',
     images: '',
-    quantity: 0
+    quantity: 0,
+    status: null
   }
+
+  status = [
+    true,
+    false
+  ]
 
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
 
   fileList = []
-
-  fileInfos: Observable<any>;
 
   constructor(private crudProductService: CrudProductService, private toast: ToastrService,
     private router: Router) { }

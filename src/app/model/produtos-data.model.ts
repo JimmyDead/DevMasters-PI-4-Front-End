@@ -7,4 +7,5 @@ export interface Produtos {
     price: number,
     quantity: number,
     category: string
+    status ?:boolean
 }

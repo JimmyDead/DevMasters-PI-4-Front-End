@@ -1,6 +1,4 @@
 import { environment } from './../../../environments/environment';
-import { RemoveProductComponent } from './../remove-product/remove-product.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Produtos } from './../../model/produtos-data.model';
 import { CrudProductService } from './../../services/crud-product.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,10 +13,7 @@ export class ReadProductComponent implements OnInit {
   products: Produtos[]
   SERVICE_IMAGE
 
-  displayedColumns: string[] = ['id', 'title', 'price', 'quantity',
-    'description', 'image', 'images', 'category', 'action']
-
-  constructor(private crudProductService: CrudProductService, private dialog: MatDialog) { }
+  constructor(private crudProductService: CrudProductService) { }
 
   ngOnInit(): void {
     this.crudProductService.readProducts().subscribe(products => {
@@ -27,12 +22,16 @@ export class ReadProductComponent implements OnInit {
     })
   }
 
-  openDialogDeleteProduct(produto) {
-    this.dialog.open(RemoveProductComponent, {
-      data: {
-        produto: produto
+  updateStatus(id: string, status: boolean) {
+    this.crudProductService.readProduct(id).subscribe(product => {
+      if (status) {
+        product.status = false
+      } else {
+        product.status = true
       }
-    });
+      this.crudProductService.updateProductStatus(product).subscribe(() => {
+      })
+    })
   }
 
 }

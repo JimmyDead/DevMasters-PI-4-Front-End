@@ -34,7 +34,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { ReadProductComponent } from './components/read-product/read-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
-import { RemoveProductComponent } from './components/remove-product/remove-product.component';
 import { ViewCrudComponent } from './components/view-crud/view-crud.component';
 
 registerLocaleData(localePt);
@@ -55,7 +54,6 @@ registerLocaleData(localePt);
     CreateProductComponent,
     ReadProductComponent,
     UpdateProductComponent,
-    RemoveProductComponent,
     ViewCrudComponent
   ],
   imports: [

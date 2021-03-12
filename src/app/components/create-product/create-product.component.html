@@ -19,6 +19,7 @@
       </div>
 
       <div class="form-row">
+
         <div class="col">
           <div class="form-group">
             <label>Quantidade</label>
@@ -32,7 +33,16 @@
             <input class="input" type="text" name="category" [(ngModel)]="product.category" placeholder="Categoria">
           </div>
         </div>
+
+        <div class="col">
+          <label>Status do Produto</label>
+          <select class="browser-default custom-select" name="status" [(ngModel)]="product.status">
+            <option *ngFor="let s of status" [value]="s">{{s === true ? 'Ativo' : 'Inativo'}}</option>
+          </select>
+        </div>
+
       </div>
+      <!--fim row-->
 
       <div class="col-md-auto">
         <h2>Upload da Imagem</h2>

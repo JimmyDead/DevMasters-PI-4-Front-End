@@ -14,7 +14,8 @@
             <th>Descrição</th>
             <th>Imagem Principal</th>
             <th>Ver Detalhes</th>
-            <th>Editar / Excluir</th>
+            <th>Alterar Status</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody *ngFor="let produto of products">
@@ -55,14 +56,19 @@
             </td>
 
             <td>
+              <select class="browser-default custom-select" name="status"
+                (change)="updateStatus(produto.id, produto.status)">
+                <option [value]="produto.status">
+                  {{produto.status === true ? 'Ativo' : 'Inativo'}}</option>
+                <option [value]="produto.status">
+                  {{produto.status === true ? 'Inativo' : 'Ativo'}}</option>
+              </select>
+            </td>
+
+            <td>
               <div class="value-button">
                 <a routerLink="/product/update/{{produto.id}}" class="edit">
                   <i class="fa fa-pencil-square-o fa-2x"></i>
-                </a>
-
-                <a>
-                  <!--DEIXAR A ROTA 'VAZIA' ASSIM LANÇA UMA EXCEÇÃO NO CONSOLE-->
-                  <i class="fa fa-trash-o fa-2x" (click)="openDialogDeleteProduct(produto)"></i>
                 </a>
               </div>
             </td>

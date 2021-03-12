@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   constructor(public cartService: CartService) { }
 
   ngOnInit(): void {
-    this.SERVICE_IMAGE = environment.serviceImage + 'download?file='
+    this.SERVICE_IMAGE = environment.serviceImage + '/download?file='
     //pegando informacoes do cart service para serem mostradas na pagina
     this.cartService.dataCarrinho.subscribe((data: CartModelServer) => this.dataCarrinho = data)
     this.cartService.totalCarrinho.subscribe(total => this.totalCarrinho = total)

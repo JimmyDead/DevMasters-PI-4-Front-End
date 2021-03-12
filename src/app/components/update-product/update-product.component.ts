@@ -7,8 +7,6 @@ import { Produtos } from './../../model/produtos-data.model';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
-declare let $: any
-
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
@@ -37,7 +35,6 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   message = '';
 
   fileList = []
-  fileInfos: Observable<any>;
 
   constructor(private router: Router, private route: ActivatedRoute,
     private crudProductService: CrudProductService, private toast: ToastrService) { }
