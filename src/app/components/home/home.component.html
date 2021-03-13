@@ -73,33 +73,37 @@
 
           <!--***********************************-->
 
+
           <div class="col-md-4 col-sm-6" *ngFor="let produto of produtos">
-            <div class="card my-2">
-              <img [src]="SERVICE_IMAGE + produto.image + '&id=' + produto.id" alt="{{produto.title}}" width="200px" class="card-img-top"
-                style="cursor: pointer;" (click)="selecionarProduto(produto.id)">
-              <div class="card-header">
-                <div class="card-title">
-                  <p>{{produto.title | titlecase}}</p>
+            <ng-container *ngIf="produto.status === true">
+              <div class="card my-2">
+                <img [src]="SERVICE_IMAGE + produto.image + '&id=' + produto.id" alt="{{produto.title}}" width="200px"
+                  class="card-img-top" style="cursor: pointer;" (click)="selecionarProduto(produto.id)">
+                <div class="card-header">
+                  <div class="card-title">
+                    <p>{{produto.title | titlecase}}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <h6>{{produto.description.substr(0, 25)}} ...</h6>
-                <p class="lead">{{produto.price | currency: 'BRL'}}</p>
-              </div>
-
-              <div class="row d-flex justify-content-center border-primary my-3">
-                <div class="col-md-6">
-                  <button class="btn btn-outline-primary btn-sm btn-block" [class.disabled]="produto.quantity < 1"
-                    [class.btn-outline-danger]="produto.quantity < 1" (click)="addingProductInCart(produto.id)"
-                    [disabled]="produto.quantity < 1">
-
-                    {{produto.quantity < 1 ? "Sem em estoque" : "Add ao carrinho"}}
-                  </button>
+                <div class="card-body">
+                  <h6>{{produto.description.substr(0, 25)}} ...</h6>
+                  <p class="lead">{{produto.price | currency: 'BRL'}}</p>
                 </div>
-              </div>
 
-            </div>
+                <div class="row d-flex justify-content-center border-primary my-3">
+                  <div class="col-md-6">
+                    <button class="btn btn-outline-primary btn-sm btn-block" [class.disabled]="produto.quantity < 1"
+                      [class.btn-outline-danger]="produto.quantity < 1" (click)="addingProductInCart(produto.id)"
+                      [disabled]="produto.quantity < 1">
+
+                      {{produto.quantity < 1 ? "Sem em estoque" : "Add ao carrinho"}}
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </ng-container>
           </div>
+
 
         </div>
       </div>
